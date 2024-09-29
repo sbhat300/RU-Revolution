@@ -92,7 +92,12 @@ public class Spawner : MonoBehaviour
     {
         Note n = notes.Dequeue();
         n.inQueue = false;
-        print(n.noteType);
+    }
+    public void RemoveNoteDestroy()
+    {
+        Note n = notes.Dequeue();
+        n.inQueue = false;
+        Destroy(n.gameObject);
     }
     void NoteGet()
     {        

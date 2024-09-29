@@ -31,18 +31,18 @@ public class ScoreCounter : MonoBehaviour
         {
             scores[0] += 5;
             scoreText.text = "Score: " + scores[0];
-            spawner.RemoveNote();
+            spawner.RemoveNoteDestroy();
         }
         else if(dist < secondBestBuffer) 
         {
             scores[0] += 3;
             scoreText.text = "Score: " + scores[0];
-            spawner.RemoveNote();
+            spawner.RemoveNoteDestroy();
         }
         else if(dist < thirdBestBuffer)
         {
             scoreText.text = "Score: " + ++scores[0];
-            spawner.RemoveNote();
+            spawner.RemoveNoteDestroy();
             
         }
     }
