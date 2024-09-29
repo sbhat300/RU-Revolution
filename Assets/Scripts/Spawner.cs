@@ -11,16 +11,61 @@ public class Spawner : MonoBehaviour
     [SerializeField] Transform[] players;
     [SerializeField] float xStart;
     [SerializeField] float xEnd;
+    Queue<Note> notes;
+    [SerializeField] ScoreCounter scoreCounter;
+    bool rightReleased, upReleased;
     // Start is called before the first frame update
     void Start()
     {
         StartCoroutine(SpawnNotes());
+        notes = new Queue<Note>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if(rightReleased && Input.GetAxisRaw("Horizontal") == -1) 
+        {
+            rightReleased = false;
+            if(notes.Peek().noteType == NoteType.GREEN)
+            {
+                NoteGet();
+            }
+
+        }
+        else if(rightReleased && Input.GetAxisRaw("Horizontal") > 0) 
+        {
+            rightReleased = false;
+            if(notes.Peek().noteType == NoteType.BLUE)
+            {
+                NoteGet();
+            }
+        }
+        else if(Input.GetAxisRaw("Horizontal") == 0)
+        {
+            rightReleased = true;
+        }
+
+        if(upReleased && Input.GetAxisRaw("Vertical") == -1) 
+        {
+            upReleased = false;
+            if(notes.Peek().noteType == NoteType.YELLOW)
+            {
+                NoteGet();
+            }
+        }
+        else if(upReleased && Input.GetAxisRaw("Vertical") > 0) 
+        {
+            upReleased = false;
+            if(notes.Peek().noteType == NoteType.RED)
+            {
+                NoteGet();
+            }
+        }
+        else if(Input.GetAxisRaw("Vertical") == 0)
+        {
+            upReleased = true;
+        }
     }
     IEnumerator SpawnNotes()
     {
@@ -40,5 +85,17 @@ public class Spawner : MonoBehaviour
         noteScript.xStart = xStart;
         noteScript.xEnd = xEnd;
         noteScript.spawner = this;
+        noteScript.scoreCounter = scoreCounter;
+        notes.Enqueue(noteScript);
+    }
+    public void RemoveNote()
+    {
+        Note n = notes.Dequeue();
+        n.inQueue = false;
+        print(n.noteType);
+    }
+    void NoteGet()
+    {        
+        scoreCounter.CountScore(notes.Peek().transform.position);
     }
 }
