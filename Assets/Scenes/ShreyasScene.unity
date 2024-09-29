@@ -2153,6 +2153,8 @@ MonoBehaviour:
   - {fileID: 969526550}
   xStart: 10
   xEnd: -13
+  scoreCounter: {fileID: 1544373798}
+  temp: 0
 --- !u!4 &1300966815
 Transform:
   m_ObjectHideFlags: 0
@@ -2831,6 +2833,56 @@ Transform:
   m_Children: []
   m_Father: {fileID: 622311957}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1544373796
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1544373797}
+  - component: {fileID: 1544373798}
+  m_Layer: 0
+  m_Name: ScoreCounter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1544373797
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1544373796}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.1343199, y: 1.5193762, z: 0.018082531}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1544373798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1544373796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01e6e6e4b1c594b158234fbbc04e6140, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bestBuffer: 0.25
+  secondBestBuffer: 0.5
+  thirdBestBuffer: 0.75
+  scoreText: {fileID: 2118065808}
+  spawner: {fileID: 1300966814}
+  player: {fileID: 622311957}
 --- !u!1 &1653772475
 GameObject:
   m_ObjectHideFlags: 0
@@ -4495,3 +4547,4 @@ SceneRoots:
   - {fileID: 1802662509}
   - {fileID: 1410504699}
   - {fileID: 1300966815}
+  - {fileID: 1544373797}

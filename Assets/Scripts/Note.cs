@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 public enum NoteType {
     RED, 
@@ -19,10 +20,13 @@ public class Note : MonoBehaviour
     public float xStart;
     public float xEnd;
     public Spawner spawner;
+    public ScoreCounter scoreCounter;
+    public bool inQueue;
 
     // Start is called before the first frame update
     void Start()
     {
+        inQueue = true;
         SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
         if(noteType == NoteType.RED)
         {
@@ -46,10 +50,10 @@ public class Note : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
         transform.position -= new Vector3(speed * Time.deltaTime, 0, 0);
+        if(inQueue && transform.position.x < player.position.x - scoreCounter.thirdBestBuffer) spawner.RemoveNote();
         if(transform.position.x < xEnd) Destroy(gameObject);
     }
 }
