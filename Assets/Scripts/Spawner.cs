@@ -27,7 +27,7 @@ public class Spawner : MonoBehaviour
         if(rightReleased && Input.GetAxisRaw("Horizontal") == -1) 
         {
             rightReleased = false;
-            if(notes.Peek().noteType == NoteType.GREEN)
+            if(notes.Peek() != null && notes.Peek().noteType == NoteType.GREEN)
             {
                 NoteGet();
             }
@@ -36,7 +36,7 @@ public class Spawner : MonoBehaviour
         else if(rightReleased && Input.GetAxisRaw("Horizontal") > 0) 
         {
             rightReleased = false;
-            if(notes.Peek().noteType == NoteType.BLUE)
+            if(notes.Peek() != null && notes.Peek().noteType == NoteType.BLUE)
             {
                 NoteGet();
             }
@@ -49,7 +49,7 @@ public class Spawner : MonoBehaviour
         if(upReleased && Input.GetAxisRaw("Vertical") == -1) 
         {
             upReleased = false;
-            if(notes.Peek().noteType == NoteType.YELLOW)
+            if(notes.Peek() != null && notes.Peek().noteType == NoteType.YELLOW)
             {
                 NoteGet();
             }
@@ -57,7 +57,7 @@ public class Spawner : MonoBehaviour
         else if(upReleased && Input.GetAxisRaw("Vertical") > 0) 
         {
             upReleased = false;
-            if(notes.Peek().noteType == NoteType.RED)
+            if(notes.Peek() != null && notes.Peek().noteType == NoteType.RED)
             {
                 NoteGet();
             }
@@ -92,7 +92,12 @@ public class Spawner : MonoBehaviour
     {
         Note n = notes.Dequeue();
         n.inQueue = false;
-        print(n.noteType);
+    }
+    public void RemoveNoteDestroy()
+    {
+        Note n = notes.Dequeue();
+        n.inQueue = false;
+        Destroy(n.gameObject);
     }
     void NoteGet()
     {        
