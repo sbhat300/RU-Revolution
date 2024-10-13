@@ -174,8 +174,8 @@ MonoBehaviour:
   speed: 0
   noteType: 0
   player: {fileID: 0}
-  xStart: 0
-  xEnd: 0
+  yStart: 0
+  yEnd: 0
   spawner: {fileID: 0}
   scoreCounter: {fileID: 0}
   inQueue: 0

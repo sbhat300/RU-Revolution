@@ -9,8 +9,8 @@ public class Spawner : MonoBehaviour
     [SerializeField] float noteSpeed;
     [SerializeField] GameObject note;
     [SerializeField] Transform[] players;
-    [SerializeField] float xStart;
-    [SerializeField] float xEnd;
+    [SerializeField] float yStart;
+    [SerializeField] float yEnd;
     Queue<Note> notes;
     [SerializeField] ScoreCounter scoreCounter;
     bool rightReleased, upReleased;
@@ -82,8 +82,8 @@ public class Spawner : MonoBehaviour
         noteScript.speed = noteSpeed;
         noteScript.noteType = noteType;
         noteScript.player = players[0]; //change this to spawn for all players later
-        noteScript.xStart = xStart;
-        noteScript.xEnd = xEnd;
+        noteScript.yStart = yStart;
+        noteScript.yEnd = yEnd;
         noteScript.spawner = this;
         noteScript.scoreCounter = scoreCounter;
         notes.Enqueue(noteScript);
