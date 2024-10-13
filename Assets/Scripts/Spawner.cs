@@ -88,11 +88,13 @@ public class Spawner : MonoBehaviour
         noteScript.scoreCounter = scoreCounter;
         notes.Enqueue(noteScript);
     }
+    // Idk if this is deprecated
     public void RemoveNote()
     {
         Note n = notes.Dequeue();
         n.inQueue = false;
     }
+    // Properly Remove Note
     public void RemoveNoteDestroy()
     {
         Note n = notes.Dequeue();
