@@ -13,10 +13,12 @@ public class ScoreCounter : MonoBehaviour
     [SerializeField] Transform player;
     int[] scores;
     // Start is called before the first frame update
+    
     void Start()
     {
         scoreText.text = "Score: 0";
         scores = new int[4];
+        
     }
 
     // Update is called once per frame
