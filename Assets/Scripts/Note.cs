@@ -23,32 +23,31 @@ public class Note : MonoBehaviour
     public ScoreCounter scoreCounter;
     public bool inQueue;
     PlayerBars playerBars;
+    public Sprite[] sprites;
 
     // Start is called before the first frame update
     void Start()
     {
         inQueue = true;
         SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+        
         playerBars = player.gameObject.GetComponent<PlayerBars>();
+        spriteRenderer.sprite = sprites[(int)noteType];
         if(noteType == NoteType.RED)
-        {
-            spriteRenderer.color = new Color32(192, 85, 84, 255);
+        {       
             transform.position =  new Vector3(playerBars.bars[0].position.x, yStart, 0);
         }
         else if(noteType == NoteType.BLUE)
         {
             transform.position = new Vector3(playerBars.bars[1].position.x, yStart, 0);
-            spriteRenderer.color = new Color32(111, 153, 233, 255);
         }
         else if(noteType == NoteType.GREEN)
         {
             transform.position =  new Vector3(playerBars.bars[2].position.x, yStart, 0);
-            spriteRenderer.color = new Color32(131, 200, 136, 255);
         }
         else if(noteType == NoteType.YELLOW)
         {
             transform.position = new Vector3(playerBars.bars[3].position.x, yStart, 0);
-            spriteRenderer.color = new Color32(255, 245, 71, 255);
         }
     }
 
