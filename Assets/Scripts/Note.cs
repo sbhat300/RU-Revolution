@@ -23,6 +23,7 @@ public class Note : MonoBehaviour
     public ScoreCounter scoreCounter;
     public bool inQueue;
     PlayerBars playerBars;
+    public float yDeactivate;
     public Sprite[] sprites;
 
     // Start is called before the first frame update
@@ -54,8 +55,10 @@ public class Note : MonoBehaviour
     void Update()
     {
         transform.position -= new Vector3(0, speed * Time.deltaTime, 0);
-        if(inQueue && transform.position.y < player.position.y - scoreCounter.thirdBestBuffer) 
+        if(inQueue && transform.position.y < yDeactivate - scoreCounter.thirdBestBuffer) 
+        {
             spawner.RemoveNote();
+        }
         if(transform.position.y < yEnd) Destroy(gameObject);
     }
 }

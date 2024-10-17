@@ -11,6 +11,7 @@ public class ScoreCounter : MonoBehaviour
     [SerializeField] TextMeshProUGUI scoreText;
     [SerializeField] Spawner spawner;
     [SerializeField] Transform player;
+    public float yPos;
     int[] scores;
     // Start is called before the first frame update
     
@@ -24,11 +25,10 @@ public class ScoreCounter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
     }
     public void CountScore(Vector3 pos)
     {
-        float dist = Mathf.Abs(pos.x - player.transform.position.x);
+        float dist = Mathf.Abs(pos.y - yPos);
         if(dist < bestBuffer)
         {
             scores[0] += 5;
@@ -45,7 +45,6 @@ public class ScoreCounter : MonoBehaviour
         {
             scoreText.text = "Score: " + ++scores[0];
             spawner.RemoveNoteDestroy();
-            
         }
     }
 }

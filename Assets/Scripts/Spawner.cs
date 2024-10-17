@@ -11,6 +11,7 @@ public class Spawner : MonoBehaviour
     [SerializeField] Transform[] players;
     [SerializeField] float yStart;
     [SerializeField] float yEnd;
+    [SerializeField] float yDeactivate;
     Queue<Note> notes;
     [SerializeField] ScoreCounter scoreCounter;
     bool rightReleased, upReleased;
@@ -19,6 +20,7 @@ public class Spawner : MonoBehaviour
     {
         StartCoroutine(SpawnNotes());
         notes = new Queue<Note>();
+        scoreCounter.yPos = yDeactivate;
     }
 
     // Update is called once per frame
@@ -27,16 +29,17 @@ public class Spawner : MonoBehaviour
         if(rightReleased && Input.GetAxisRaw("Horizontal") == -1) 
         {
             rightReleased = false;
-            if(notes.Peek() != null && notes.Peek().noteType == NoteType.GREEN)
+           
+            if(notes.Peek() != null && notes.Peek().noteType == NoteType.BLUE)
             {
                 NoteGet();
             }
-
         }
         else if(rightReleased && Input.GetAxisRaw("Horizontal") > 0) 
         {
             rightReleased = false;
-            if(notes.Peek() != null && notes.Peek().noteType == NoteType.BLUE)
+            
+            if(notes.Peek() != null && notes.Peek().noteType == NoteType.YELLOW)
             {
                 NoteGet();
             }
@@ -49,10 +52,11 @@ public class Spawner : MonoBehaviour
         if(upReleased && Input.GetAxisRaw("Vertical") == -1) 
         {
             upReleased = false;
-            if(notes.Peek() != null && notes.Peek().noteType == NoteType.YELLOW)
+             if(notes.Peek() != null && notes.Peek().noteType == NoteType.GREEN)
             {
                 NoteGet();
             }
+            
         }
         else if(upReleased && Input.GetAxisRaw("Vertical") > 0) 
         {
@@ -86,6 +90,7 @@ public class Spawner : MonoBehaviour
         noteScript.yEnd = yEnd;
         noteScript.spawner = this;
         noteScript.scoreCounter = scoreCounter;
+        noteScript.yDeactivate = yDeactivate;
         notes.Enqueue(noteScript);
     }
     // Idk if this is deprecated
