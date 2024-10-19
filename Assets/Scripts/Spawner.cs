@@ -14,6 +14,11 @@ public class Spawner : MonoBehaviour
     [SerializeField] float yDeactivate;
     Queue<Note> notes;
     [SerializeField] ScoreCounter scoreCounter;
+    // The things on the bottom
+    [SerializeField] GameObject[] displays; // 0:red, 1:blue, 2:green, 3:yellow
+    [SerializeField] Sprite[] displaySprites; // 0:red, 1:blue, 2:green, 3:yellow
+    [SerializeField] Sprite[] graySprites; // 0:red, 1:blue, 2:green, 3:yellow
+
     bool rightReleased, upReleased;
     // Start is called before the first frame update
     void Start()
@@ -26,7 +31,8 @@ public class Spawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(rightReleased && Input.GetAxisRaw("Horizontal") == -1) 
+        // Key Up
+        if(rightReleased && Input.GetAxisRaw("Horizontal") == -1) // left pressed
         {
             rightReleased = false;
            
@@ -34,8 +40,9 @@ public class Spawner : MonoBehaviour
             {
                 NoteGet();
             }
+            displays[1].GetComponent<SpriteRenderer>().sprite = displaySprites[1];
         }
-        else if(rightReleased && Input.GetAxisRaw("Horizontal") > 0) 
+        else if(rightReleased && Input.GetAxisRaw("Horizontal") > 0) // right pressed
         {
             rightReleased = false;
             
@@ -44,21 +51,16 @@ public class Spawner : MonoBehaviour
                 NoteGet();
             }
         }
-        else if(Input.GetAxisRaw("Horizontal") == 0)
-        {
-            rightReleased = true;
-        }
 
-        if(upReleased && Input.GetAxisRaw("Vertical") == -1) 
+        if (upReleased && Input.GetAxisRaw("Vertical") == -1) // down pressed
         {
             upReleased = false;
              if(notes.Peek() != null && notes.Peek().noteType == NoteType.GREEN)
             {
                 NoteGet();
             }
-            
         }
-        else if(upReleased && Input.GetAxisRaw("Vertical") > 0) 
+        else if(upReleased && Input.GetAxisRaw("Vertical") > 0) // up pressed
         {
             upReleased = false;
             if(notes.Peek() != null && notes.Peek().noteType == NoteType.RED)
@@ -66,10 +68,64 @@ public class Spawner : MonoBehaviour
                 NoteGet();
             }
         }
-        else if(Input.GetAxisRaw("Vertical") == 0)
+
+        // Key Down Detection - not using axis because we aren't going to use the stick anyway just buttons sorry if this breaks anything
+        if (Input.GetKeyDown(KeyCode.LeftArrow)) // Left arrow key pressed
+        {
+            displays[1].GetComponent<SpriteRenderer>().sprite = graySprites[1];
+        }
+        else if (Input.GetKeyDown(KeyCode.RightArrow)) // Right arrow key pressed
+        {
+            displays[3].GetComponent<SpriteRenderer>().sprite = graySprites[3];
+        }
+        else if (Input.GetKeyDown(KeyCode.UpArrow)) // Up arrow key pressed
+        {
+            displays[0].GetComponent<SpriteRenderer>().sprite = graySprites[0];
+        }
+        else if (Input.GetKeyDown(KeyCode.DownArrow)) // Down arrow key pressed
+        {
+            displays[2].GetComponent<SpriteRenderer>().sprite = graySprites[2];
+        }
+
+        // Key Up Detection
+        if (Input.GetKeyUp(KeyCode.LeftArrow)) // Left released
+        {
+            rightReleased = true;
+            if (notes.Peek() != null && notes.Peek().noteType == NoteType.BLUE)
+            {
+                NoteGet();
+            }
+            displays[1].GetComponent<SpriteRenderer>().sprite = displaySprites[1];
+        }
+        else if (Input.GetKeyUp(KeyCode.RightArrow)) // Right released
+        {
+            rightReleased = true;
+            if (notes.Peek() != null && notes.Peek().noteType == NoteType.YELLOW)
+            {
+                NoteGet();
+            }
+            displays[3].GetComponent<SpriteRenderer>().sprite = displaySprites[3];
+        }
+
+        if (Input.GetKeyUp(KeyCode.DownArrow)) // Down released
         {
             upReleased = true;
+            if (notes.Peek() != null && notes.Peek().noteType == NoteType.GREEN)
+            {
+                NoteGet();
+            }
+            displays[2].GetComponent<SpriteRenderer>().sprite = displaySprites[2];
         }
+        else if (Input.GetKeyUp(KeyCode.UpArrow)) // Up released
+        {
+            upReleased = true;
+            if (notes.Peek() != null && notes.Peek().noteType == NoteType.RED)
+            {
+                NoteGet();
+            }
+            displays[0].GetComponent<SpriteRenderer>().sprite = displaySprites[0];
+        }
+
     }
     IEnumerator SpawnNotes()
     {

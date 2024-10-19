@@ -375,7 +375,7 @@ GameObject:
   - component: {fileID: 129975990}
   - component: {fileID: 129975989}
   m_Layer: 0
-  m_Name: "Screenshot 2024-09-30 at 5,34,01\u202FPM_processed"
+  m_Name: BlueDisplay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -422,7 +422,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 788a401b557454c2aa75879b991d27f1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 608af92f6a3aa48a79905cb866e2ac33, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1264,7 +1264,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 788a401b557454c2aa75879b991d27f1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 608af92f6a3aa48a79905cb866e2ac33, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1511,8 +1511,8 @@ Transform:
   - {fileID: 1286527969}
   - {fileID: 1879285303}
   - {fileID: 129975990}
-  - {fileID: 794301034}
   - {fileID: 1578351698}
+  - {fileID: 794301034}
   m_Father: {fileID: 622311957}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &622311956
@@ -1966,7 +1966,7 @@ GameObject:
   - component: {fileID: 794301034}
   - component: {fileID: 794301035}
   m_Layer: 0
-  m_Name: "Screenshot 2024-09-30 at 5,45,30\u202FPM_processed"
+  m_Name: YellowDisplay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4277,6 +4277,21 @@ MonoBehaviour:
   yEnd: -5
   yDeactivate: -2.4
   scoreCounter: {fileID: 622311958}
+  displays:
+  - {fileID: 1879285301}
+  - {fileID: 129975988}
+  - {fileID: 1578351697}
+  - {fileID: 794301033}
+  displaySprites:
+  - {fileID: 21300000, guid: e49281e42f85e43ef834ec6bcf43a695, type: 3}
+  - {fileID: 21300000, guid: 608af92f6a3aa48a79905cb866e2ac33, type: 3}
+  - {fileID: 21300000, guid: d780eadfed61549138cef0549b7efa40, type: 3}
+  - {fileID: 21300000, guid: d0f8aeb2c0c65476b90ebba8278b5fe0, type: 3}
+  graySprites:
+  - {fileID: 21300000, guid: 62f95f8dc65b6468f8f918d41a4f2a95, type: 3}
+  - {fileID: 21300000, guid: 5c97a3e731c5e476ea300fa560dcd6f9, type: 3}
+  - {fileID: 21300000, guid: 4dfed2f14670f423189ba052600aba1b, type: 3}
+  - {fileID: 21300000, guid: 1c8488cc55d0d41d7bf592e4bf2dd1dd, type: 3}
 --- !u!4 &1300966815
 Transform:
   m_ObjectHideFlags: 0
@@ -6098,7 +6113,7 @@ GameObject:
   - component: {fileID: 1578351698}
   - component: {fileID: 1578351699}
   m_Layer: 0
-  m_Name: "Screenshot 2024-09-30 at 5,42,42\u202FPM_processed"
+  m_Name: GreenDisplay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6328,7 +6343,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 788a401b557454c2aa75879b991d27f1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 608af92f6a3aa48a79905cb866e2ac33, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -7026,7 +7041,7 @@ GameObject:
   - component: {fileID: 1879285303}
   - component: {fileID: 1879285302}
   m_Layer: 0
-  m_Name: "Screenshot 2024-09-30 at 5,07,01\u202FPM_processed"
+  m_Name: RedDisplay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7330,7 +7345,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 788a401b557454c2aa75879b991d27f1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 608af92f6a3aa48a79905cb866e2ac33, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
