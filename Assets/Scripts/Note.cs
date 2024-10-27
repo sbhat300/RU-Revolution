@@ -57,7 +57,7 @@ public class Note : MonoBehaviour
         transform.position -= new Vector3(0, speed * Time.deltaTime, 0);
         if(inQueue && transform.position.y < yDeactivate - scoreCounter.thirdBestBuffer) 
         {
-            spawner.RemoveNote();
+            spawner.RemoveNote(scoreCounter.id);
         }
         if(transform.position.y < yEnd) Destroy(gameObject);
     }

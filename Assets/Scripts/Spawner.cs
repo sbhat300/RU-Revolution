@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Tilemaps;
@@ -12,8 +13,8 @@ public class Spawner : MonoBehaviour
     [SerializeField] float yStart;
     [SerializeField] float yEnd;
     [SerializeField] float yDeactivate;
-    Queue<Note> notes;
-    [SerializeField] ScoreCounter scoreCounter;
+    Queue<Note>[] notes;
+    [SerializeField] ScoreCounter[] scoreCounter;
     // The things on the bottom
     [SerializeField] GameObject[] displays; // 0:red, 1:blue, 2:green, 3:yellow
     [SerializeField] Sprite[] displaySprites; // 0:red, 1:blue, 2:green, 3:yellow
@@ -24,8 +25,15 @@ public class Spawner : MonoBehaviour
     void Start()
     {
         StartCoroutine(SpawnNotes());
-        notes = new Queue<Note>();
-        scoreCounter.yPos = yDeactivate;
+        notes = new Queue<Note>[4];
+        for(int i = 0; i < 4; i++)
+        {
+            notes[i] = new Queue<Note>();
+        }
+        for(int i = 0; i < 4; i++)
+        {
+            scoreCounter[i].yPos = yDeactivate;
+        }
     }
 
     // Update is called once per frame
@@ -35,10 +43,11 @@ public class Spawner : MonoBehaviour
         if(rightReleased && Input.GetAxisRaw("Horizontal") == -1) // left pressed
         {
             rightReleased = false;
-           
-            if(notes.Peek() != null && notes.Peek().noteType == NoteType.BLUE)
+
+            for(int i = 0; i < 4; i++)
+            if(notes[i].Peek() != null && notes[i].Peek().noteType == NoteType.BLUE)
             {
-                NoteGet();
+                NoteGet(i);
             }
             displays[1].GetComponent<SpriteRenderer>().sprite = displaySprites[1];
         }
@@ -46,26 +55,31 @@ public class Spawner : MonoBehaviour
         {
             rightReleased = false;
             
-            if(notes.Peek() != null && notes.Peek().noteType == NoteType.YELLOW)
+            for(int i = 0; i < 4; i++)
+            if(notes[i].Peek() != null && notes[i].Peek().noteType == NoteType.YELLOW)
             {
-                NoteGet();
+                NoteGet(i);
             }
         }
 
         if (upReleased && Input.GetAxisRaw("Vertical") == -1) // down pressed
         {
             upReleased = false;
-             if(notes.Peek() != null && notes.Peek().noteType == NoteType.GREEN)
+
+            for(int i = 0; i < 4; i++)
+            if(notes[i].Peek() != null && notes[i].Peek().noteType == NoteType.GREEN)
             {
-                NoteGet();
+                NoteGet(i);
             }
         }
         else if(upReleased && Input.GetAxisRaw("Vertical") > 0) // up pressed
         {
             upReleased = false;
-            if(notes.Peek() != null && notes.Peek().noteType == NoteType.RED)
+
+            for(int i = 0; i < 4; i++)
+            if(notes[i].Peek() != null && notes[i].Peek().noteType == NoteType.RED)
             {
-                NoteGet();
+                NoteGet(i);
             }
         }
 
@@ -91,38 +105,42 @@ public class Spawner : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.LeftArrow)) // Left released
         {
             rightReleased = true;
-            if (notes.Peek() != null && notes.Peek().noteType == NoteType.BLUE)
-            {
-                NoteGet();
-            }
+            // for(int i = 0; i < 4; i++)
+            // if (notes[i].Peek() != null && notes[i].Peek().noteType == NoteType.BLUE)
+            // {
+            //     NoteGet(i);
+            // }
             displays[1].GetComponent<SpriteRenderer>().sprite = displaySprites[1];
         }
         else if (Input.GetKeyUp(KeyCode.RightArrow)) // Right released
         {
             rightReleased = true;
-            if (notes.Peek() != null && notes.Peek().noteType == NoteType.YELLOW)
-            {
-                NoteGet();
-            }
+            // for(int i = 0; i < 4; i++)
+            // if (notes[i].Peek() != null && notes[i].Peek().noteType == NoteType.YELLOW)
+            // {
+            //     NoteGet(i);
+            // }
             displays[3].GetComponent<SpriteRenderer>().sprite = displaySprites[3];
         }
 
         if (Input.GetKeyUp(KeyCode.DownArrow)) // Down released
         {
             upReleased = true;
-            if (notes.Peek() != null && notes.Peek().noteType == NoteType.GREEN)
-            {
-                NoteGet();
-            }
+            // for(int i = 0; i < 4; i++)
+            // if (notes[i].Peek() != null && notes[i].Peek().noteType == NoteType.GREEN)
+            // {
+            //     NoteGet(i);
+            // }
             displays[2].GetComponent<SpriteRenderer>().sprite = displaySprites[2];
         }
         else if (Input.GetKeyUp(KeyCode.UpArrow)) // Up released
         {
             upReleased = true;
-            if (notes.Peek() != null && notes.Peek().noteType == NoteType.RED)
-            {
-                NoteGet();
-            }
+            // for(int i = 0; i < 4; i++)
+            // if (notes[i].Peek() != null && notes[i].Peek().noteType == NoteType.RED)
+            // {
+            //     NoteGet(i);
+            // }
             displays[0].GetComponent<SpriteRenderer>().sprite = displaySprites[0];
         }
 
@@ -132,38 +150,40 @@ public class Spawner : MonoBehaviour
         while(true)
         {
             yield return new WaitForSeconds(1);
-            Spawn((NoteType)Random.Range(0, 3));
+            Spawn((NoteType)UnityEngine.Random.Range(0, 3));
         }
     }
     void Spawn(NoteType noteType)
     {
-        GameObject newNote = Instantiate(note, transform.position, Quaternion.identity);
-        Note noteScript = newNote.GetComponent<Note>();
-        noteScript.speed = noteSpeed;
-        noteScript.noteType = noteType;
-        noteScript.player = players[0]; //change this to spawn for all players later
-        noteScript.yStart = yStart;
-        noteScript.yEnd = yEnd;
-        noteScript.spawner = this;
-        noteScript.scoreCounter = scoreCounter;
-        noteScript.yDeactivate = yDeactivate;
-        notes.Enqueue(noteScript);
+        for(int i = 0; i < 4; i++)
+        {
+            GameObject newNote = Instantiate(note, transform.position, Quaternion.identity);
+            Note noteScript = newNote.GetComponent<Note>();
+            noteScript.speed = noteSpeed;
+            noteScript.noteType = noteType;
+            noteScript.player = players[i]; //change this to spawn for all players later
+            noteScript.yStart = yStart;
+            noteScript.yEnd = yEnd;
+            noteScript.spawner = this;
+            noteScript.scoreCounter = scoreCounter[i];
+            noteScript.yDeactivate = yDeactivate;
+            notes[i].Enqueue(noteScript);
+        }
     }
-    // Idk if this is deprecated
-    public void RemoveNote()
+    public void RemoveNote(int id)
     {
-        Note n = notes.Dequeue();
+        Note n = notes[id].Dequeue();
         n.inQueue = false;
     }
     // Properly Remove Note
-    public void RemoveNoteDestroy()
+    public void RemoveNoteDestroy(int id)
     {
-        Note n = notes.Dequeue();
+        Note n = notes[id].Dequeue();
         n.inQueue = false;
         Destroy(n.gameObject);
     }
-    void NoteGet()
+    void NoteGet(int id)
     {        
-        scoreCounter.CountScore(notes.Peek().transform.position);
+        scoreCounter[id].CountScore(notes[id].Peek().transform.position);
     }
 }
