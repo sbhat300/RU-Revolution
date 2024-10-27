@@ -12,15 +12,14 @@ public class ScoreCounter : MonoBehaviour
     [SerializeField] Spawner spawner;
     [SerializeField] Transform player;
     public float yPos;
-    int[] scores;
+    int score;
     public int id;
     // Start is called before the first frame update
     
     void Start()
     {
         scoreText.text = "Score: 0";
-        scores = new int[4];
-        
+        score = 0;
     }
 
     // Update is called once per frame
@@ -32,19 +31,19 @@ public class ScoreCounter : MonoBehaviour
         float dist = Mathf.Abs(pos.y - yPos);
         if(dist < bestBuffer)
         {
-            scores[0] += 5;
-            scoreText.text = "Score: " + scores[0];
+            score += 5;
+            scoreText.text = "Score: " + score;
             spawner.RemoveNoteDestroy(id);
         }
         else if(dist < secondBestBuffer) 
         {
-            scores[0] += 3;
-            scoreText.text = "Score: " + scores[0];
+            score += 3;
+            scoreText.text = "Score: " + score;
             spawner.RemoveNoteDestroy(id);
         }
         else if(dist < thirdBestBuffer)
         {
-            scoreText.text = "Score: " + ++scores[0];
+            scoreText.text = "Score: " + ++score;
             spawner.RemoveNoteDestroy(id);
         }
     }
