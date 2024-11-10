@@ -1556,6 +1556,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6baae3d9e5a642bfa20ff7d60270874, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scoreCounter: {fileID: 622311958}
+  spawner: {fileID: 1300966814}
 --- !u!114 &622311961
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3733,6 +3735,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6baae3d9e5a642bfa20ff7d60270874, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scoreCounter: {fileID: 0}
+  spawner: {fileID: 0}
 --- !u!114 &1300966817
 MonoBehaviour:
   m_ObjectHideFlags: 0
