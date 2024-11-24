@@ -45,88 +45,88 @@
             "bindings": [
                 {
                     "name": "",
-                    "id": "d9a19f6f-42b7-4a3c-9b56-db3dd3f08294",
-                    "path": "<Keyboard>/upArrow",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Dirs",
-                    "action": "Up",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "a3d70ec7-d8fe-4fa9-b192-e8afc22f3b85",
+                    "id": "7e12e489-270d-4ee4-b953-d84ef7ea9f94",
                     "path": "<Gamepad>/buttonEast",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Dirs",
+                    "groups": "justcontroller",
                     "action": "Up",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "5c59fe06-816e-48c9-860f-0f57eb92bae3",
-                    "path": "<Keyboard>/rightArrow",
+                    "id": "fbf9ad18-3369-4665-9e42-5b71ffd8e087",
+                    "path": "<Keyboard>/upArrow",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Dirs",
-                    "action": "Right",
+                    "groups": "justkeyboard",
+                    "action": "Up",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "41448613-b6a7-4979-abc9-c5e0bb5a0a8c",
+                    "id": "ee398706-d848-4000-aad2-255076feab74",
                     "path": "<Gamepad>/rightTrigger",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Dirs",
+                    "groups": "justcontroller",
                     "action": "Right",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "cd83543d-e0e5-4881-822b-5f5545756fa9",
-                    "path": "<Keyboard>/downArrow",
+                    "id": "2985c6bd-b132-494e-967a-85fa1657f90f",
+                    "path": "<Keyboard>/rightArrow",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Dirs",
-                    "action": "Down",
+                    "groups": "justkeyboard",
+                    "action": "Right",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "a781c93d-a33e-4c7e-8368-aebeb30e7c18",
+                    "id": "50d6336c-24b0-43c0-bfd1-2748982d3713",
                     "path": "<Gamepad>/dpad/left",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Dirs",
+                    "groups": "justcontroller",
                     "action": "Down",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "3ea02564-502d-4027-aca5-e5c816a884c9",
-                    "path": "<Keyboard>/leftArrow",
+                    "id": "cde7408e-4193-4f63-8369-2b16fc831c67",
+                    "path": "<Keyboard>/downArrow",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Dirs",
+                    "groups": "justkeyboard",
+                    "action": "Down",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "28a889ef-7ed6-445e-a989-0921adb4263a",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "justcontroller",
                     "action": "Left",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "2507247c-ea41-4e1f-9226-147f4a29eade",
-                    "path": "<Gamepad>/leftTrigger",
+                    "id": "9da87031-047c-4873-86b7-ef4e71b4651f",
+                    "path": "<Keyboard>/leftArrow",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Dirs",
+                    "groups": "justkeyboard",
                     "action": "Left",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -136,17 +136,23 @@
     ],
     "controlSchemes": [
         {
-            "name": "Dirs",
-            "bindingGroup": "Dirs",
+            "name": "justkeyboard",
+            "bindingGroup": "justkeyboard",
             "devices": [
                 {
                     "devicePath": "<Keyboard>",
-                    "isOptional": true,
+                    "isOptional": false,
                     "isOR": false
-                },
+                }
+            ]
+        },
+        {
+            "name": "justcontroller",
+            "bindingGroup": "justcontroller",
+            "devices": [
                 {
                     "devicePath": "<Gamepad>",
-                    "isOptional": true,
+                    "isOptional": false,
                     "isOR": false
                 }
             ]

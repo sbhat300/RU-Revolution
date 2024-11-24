@@ -18,7 +18,7 @@ public class Spawner : MonoBehaviour
     Queue<Note>[] notes;
     [SerializeField] ScoreCounter[] scoreCounter;
     // The things on the bottom
-    [SerializeField] GameObject[] displays; // 0:red, 1:blue, 2:green, 3:yellow
+    [SerializeField] GameObject[,] displays; // 0:red, 1:blue, 2:green, 3:yellow
     [SerializeField] Sprite[] displaySprites; // 0:red, 1:blue, 2:green, 3:yellow
     [SerializeField] Sprite[] graySprites; // 0:red, 1:blue, 2:green, 3:yellow
 
@@ -30,6 +30,7 @@ public class Spawner : MonoBehaviour
         notes = new Queue<Note>[4];
         rightReleased = new bool[4];
         upReleased = new bool[4];
+        displays = new GameObject[4,4];
         for(int i = 0; i < 4; i++)
         {
             notes[i] = new Queue<Note>();
@@ -37,6 +38,13 @@ public class Spawner : MonoBehaviour
         for(int i = 0; i < 4; i++)
         {
             scoreCounter[i].yPos = yDeactivate;
+        }
+        for(int i = 0; i < 4; i++)
+        {
+            for(int j = 0; j < 4; j++)
+            {
+                displays[i,j] = scoreCounter[i].gameObject.GetComponent<PlayerBars>().displays[j];
+            }
         }
     }
     
@@ -50,7 +58,7 @@ public class Spawner : MonoBehaviour
         {
             if(input == Keys.LEFT)
             {
-                displays[1].GetComponent<SpriteRenderer>().sprite = graySprites[1];
+                displays[i,1].GetComponent<SpriteRenderer>().sprite = graySprites[1];
                 if(notes[i].Peek() != null && notes[i].Peek().noteType == NoteType.BLUE)
                 {
                     NoteGet(i);
@@ -58,7 +66,7 @@ public class Spawner : MonoBehaviour
             }
             else if(input == Keys.RIGHT)
             {
-                displays[3].GetComponent<SpriteRenderer>().sprite = graySprites[3];
+                displays[i,3].GetComponent<SpriteRenderer>().sprite = graySprites[3];
                 if(notes[i].Peek() != null && notes[i].Peek().noteType == NoteType.YELLOW)
                 {
                     NoteGet(i);
@@ -66,7 +74,7 @@ public class Spawner : MonoBehaviour
             }
             else if(input == Keys.DOWN)
             {
-                displays[2].GetComponent<SpriteRenderer>().sprite = graySprites[2];
+                displays[i,2].GetComponent<SpriteRenderer>().sprite = graySprites[2];
                 if(notes[i].Peek() != null && notes[i].Peek().noteType == NoteType.GREEN)
                 {
                     NoteGet(i);
@@ -74,7 +82,7 @@ public class Spawner : MonoBehaviour
             }
             else if(input == Keys.UP)
             {
-                displays[0].GetComponent<SpriteRenderer>().sprite = graySprites[0];
+                displays[i,0].GetComponent<SpriteRenderer>().sprite = graySprites[0];
                 if(notes[i].Peek() != null && notes[i].Peek().noteType == NoteType.RED)
                 {
                     NoteGet(i);
@@ -86,20 +94,20 @@ public class Spawner : MonoBehaviour
             // Key Up Detection
             if (input == Keys.LEFT) // Left released
             {
-                displays[1].GetComponent<SpriteRenderer>().sprite = displaySprites[1];
+                displays[i,1].GetComponent<SpriteRenderer>().sprite = displaySprites[1];
             }
             else if (input == Keys.RIGHT) // Right released
             {
-                displays[3].GetComponent<SpriteRenderer>().sprite = displaySprites[3];
+                displays[i,3].GetComponent<SpriteRenderer>().sprite = displaySprites[3];
             }
 
             if (input == Keys.DOWN) // Down released
             {
-                displays[2].GetComponent<SpriteRenderer>().sprite = displaySprites[2];
+                displays[i,2].GetComponent<SpriteRenderer>().sprite = displaySprites[2];
             }
             else if (input == Keys.UP) // Up released
             {
-                displays[0].GetComponent<SpriteRenderer>().sprite = displaySprites[0];
+                displays[i,0].GetComponent<SpriteRenderer>().sprite = displaySprites[0];
             }
         }
     }
